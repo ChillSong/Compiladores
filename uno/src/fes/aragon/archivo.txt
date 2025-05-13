@@ -1,0 +1,5 @@
+if (num asddasd) { sjdklasjdklsa kjdklasdlkas}
+num_4=3.15487 + 3.45e10;
+while(){}
+class(dsadasdas){}
+public ( )  {dasjdksahdkjashdkasjd sdasdsad asjdhasjdhjask sajdkaskdas}

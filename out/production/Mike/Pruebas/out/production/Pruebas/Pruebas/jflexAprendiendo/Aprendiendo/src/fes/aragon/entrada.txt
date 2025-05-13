@@ -1,0 +1,16 @@
+int x = 10;
+int y = 5;
+x = x + y;
+
+double z = 3.14;
+z = z * x;
+
+boolean resultado = (x > y) && (z < 10);
+
+double logValor = log(10);
+double piValor = PI;
+double maxValor = max(x, y);
+
+double cuadrado = sqr(x);
+
+System.out.println("Resultado: " + resultado);

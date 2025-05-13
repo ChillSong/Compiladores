@@ -1,0 +1,98 @@
+package mx.pekesoft.dbsingletos;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Singleton {
+    private String url;
+    private String usr;
+    private String password;
+    private String puerto;
+    private String dbName;
+    private Connection miConexion;
+    private static Singleton instance;
+    private int volumen;
+    private Configuraciones;
+    private int Dificultad;
+    private String driver;
+    private Map<String, Object> settings;
+
+    private Singleton() {
+        url = "jdbc:mysql://localhost:";
+        usr = "root";
+        password = "Root.1234";
+        puerto = "3306";
+        dbName = "productos";
+        driver = "com.mysql.cj.jdbc.Driver";
+        settings = new HashMap<>();
+        settings.put("resolution", "1920x1080");
+        settings.put("fullscreen", true);
+        settings.put("volume", 0.8);
+        settings.put("difficulty", "normal");
+
+        try {
+            Class.forName(driver);
+            System.out.println(url + puerto + "/" + dbName);
+            miConexion = DriverManager.getConnection(url + puerto + "/" + dbName, usr, password);
+            System.out.println("Conectado a: " + miConexion.getCatalog());
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            synchronized (Singleton.class) {
+                if (instance == null) {
+                    System.out.println("Primera vez");
+                    instance = new Singleton();
+                }
+            }
+        }
+        return instance;
+    }
+
+    public Connection getMiConexion() {
+        return miConexion;
+    }
+
+    public void cerrarConexion() {
+        if (miConexion != null) {
+            try {
+                miConexion.close();
+                System.out.println("Conexión cerrada.");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public Object getSetting(String key) {
+        return settings.getOrDefault(key, null);
+    }
+
+    public void setSetting(String key, Object value) {
+        settings.put(key, value);
+    }
+    
+    public void showSettings() {
+        settings.forEach((key, value) -> System.out.println(key + ": " + value));
+    }
+}
+
+
+    public int dificultad(){
+      
+    }
+
+    public int volumen(){
+    
+    }
+
+    public int string(){
+      
+    }
